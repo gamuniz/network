@@ -1,0 +1,28 @@
+- name: Set version specific variables
+  hosts: all
+  include_vars: "{{ item }}"
+  with_first_found:
+      - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+      - "{{ ansible_distribution }}.yml"
+      - "{{ ansible_os_family }}.yml"
+      - "default.yml"
+
+- name: Install packages
+  package:
+      name: "{{ network_packages | default([]) }}"
+      state: present
+
+- name: Enable network service
+  service:
+      name: "{{ network_service_name }}"
+      state: started
+      enabled: yes
+
+- name: Configure networking connection profiles
+  network_connections:
+      provider:       "{{ network_provider      | mandatory }}"
+      ignore_errors:  "{{ network_ignore_errors | default(omit) }}"
+      connections:    "{{ network_connections   | default([]) }}"
+
+- name: Re-test connectivity
+  ping:
