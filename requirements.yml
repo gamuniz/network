@@ -1,0 +1,27 @@
+- src: https://github.com/linux-system-roles/firewall.git
+  version: master
+  name: firewall
+
+- src: https://github.com/linux-system-roles/network.git
+  version: master
+  name: network
+
+- src: https://github.com/linux-system-roles/postfix.git
+  version: master
+  name: postfix
+
+- src: https://github.com/linux-system-roles/timesync.git
+  version: master
+  name: timesync
+
+- src: https://github.com/linux-system-roles/tuned.git
+  version: master
+  name: tuned
+
+- src: https://github.com/linux-system-roles/kdump.git
+  version: master
+  name: kdump
+
+- src: https://github.com/linux-system-roles/selinux.git
+  version: master
+  name: selinux
